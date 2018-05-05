@@ -68,14 +68,14 @@ parser.add_argument('--version', action='version', version='GT Finder - 1.2 (exe
 results = parser.parse_args()
 
 if not results.wordlist_file:
-    print 'Please supply a value to -w. Type -h for help.'
+    print ('Please supply a value to -w. Type -h for help.')
     sys.exit(0)
 if not results.output_file:
-    print 'Please supply a value to -o. Type -h for help.'
+    print ('Please supply a value to -o. Type -h for help.')
     sys.exit(0)
 if results.proxies_enabled:
     if not results.proxies_src:
-        print 'Please supply a value to -s. Type -h for help.'
+        print ('Please supply a value to -s. Type -h for help.')
         sys.exit(0)
 
 manager = m.ClientManager(wordlist_file=results.wordlist_file,
@@ -98,13 +98,13 @@ def main():
     while 1:
         try:
             if manager.gamertags.empty():
-                print 'Finished'
+                print ('Finished')
                 break
             for i in xrange(min(pool.free_count(), 50)):
                 pool.spawn(manager.spawn_connect)
             gevent.sleep(1)
         except KeyboardInterrupt:
-            print '[KYBRD_NTRPT] Finishing active threads'
+            print ('[KYBRD_NTRPT] Finishing active threads')
             pool.join()
             break
 
